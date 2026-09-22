@@ -1,0 +1,319 @@
+{
+  "reference": "E:\\000VSCODE PROJECT MULAI DARI DESEMBER 2025\\NusaHarvest V2 revamp\\research\\data\\backtest-calibrated.json",
+  "generated_at": "2026-09-22T10:53:46.072Z",
+  "sites": [
+    {
+      "site": "Klaten",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-7.7078&longitude=110.6101&start_date=1991-01-01&end_date=2025-12-31&daily=precipitation_sum&timezone=Asia%2FJakarta",
+      "body_sha256": "c259ff9a4a346b7691d54cdc5a7d0f5b2df19a279b6007d143b600672673bc9e",
+      "p20_mm": 551,
+      "p20_ref": 551,
+      "median_mm": 796,
+      "median_ref": 796,
+      "hits_legacy": 5,
+      "hits_v1_rule": 5,
+      "hits_ref": 5,
+      "hit_years": [
+        {
+          "year": 2006,
+          "mm": 502,
+          "total_mm100": 50160
+        },
+        {
+          "year": 2009,
+          "mm": 506,
+          "total_mm100": 50630
+        },
+        {
+          "year": 2018,
+          "mm": 507,
+          "total_mm100": 50650
+        },
+        {
+          "year": 2019,
+          "mm": 343,
+          "total_mm100": 34310
+        },
+        {
+          "year": 2023,
+          "mm": 316,
+          "total_mm100": 31600
+        }
+      ],
+      "hit_years_ref": [
+        {
+          "year": 2006,
+          "mm": 502
+        },
+        {
+          "year": 2009,
+          "mm": 506
+        },
+        {
+          "year": 2018,
+          "mm": 507
+        },
+        {
+          "year": 2019,
+          "mm": 343
+        },
+        {
+          "year": 2023,
+          "mm": 316
+        }
+      ],
+      "v1_thr_full_mm10": 5058,
+      "v1_thr_half_mm10": 5510,
+      "v1_full_years": [
+        2006,
+        2019,
+        2023
+      ],
+      "v1_half_or_full_years": [
+        2006,
+        2009,
+        2018,
+        2019,
+        2023
+      ]
+    },
+    {
+      "site": "Grobogan",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-7.09&longitude=110.92&start_date=1991-01-01&end_date=2025-12-31&daily=precipitation_sum&timezone=Asia%2FJakarta",
+      "body_sha256": "697c2b23de423922b9d1bd2d9d132ff93675f83cda24154919492e267fa01fda",
+      "p20_mm": 559,
+      "p20_ref": 559,
+      "median_mm": 645,
+      "median_ref": 645,
+      "hits_legacy": 6,
+      "hits_v1_rule": 6,
+      "hits_ref": 6,
+      "hit_years": [
+        {
+          "year": 2002,
+          "mm": 462,
+          "total_mm100": 46150
+        },
+        {
+          "year": 2004,
+          "mm": 521,
+          "total_mm100": 52080
+        },
+        {
+          "year": 2006,
+          "mm": 386,
+          "total_mm100": 38610
+        },
+        {
+          "year": 2009,
+          "mm": 443,
+          "total_mm100": 44340
+        },
+        {
+          "year": 2019,
+          "mm": 539,
+          "total_mm100": 53930
+        },
+        {
+          "year": 2023,
+          "mm": 402,
+          "total_mm100": 40200
+        }
+      ],
+      "hit_years_ref": [
+        {
+          "year": 2002,
+          "mm": 461
+        },
+        {
+          "year": 2004,
+          "mm": 521
+        },
+        {
+          "year": 2006,
+          "mm": 386
+        },
+        {
+          "year": 2009,
+          "mm": 443
+        },
+        {
+          "year": 2019,
+          "mm": 539
+        },
+        {
+          "year": 2023,
+          "mm": 402
+        }
+      ],
+      "v1_thr_full_mm10": 4596,
+      "v1_thr_half_mm10": 5592,
+      "v1_full_years": [
+        2006,
+        2009,
+        2023
+      ],
+      "v1_half_or_full_years": [
+        2002,
+        2004,
+        2006,
+        2009,
+        2019,
+        2023
+      ]
+    },
+    {
+      "site": "Demak",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-6.89&longitude=110.64&start_date=1991-01-01&end_date=2025-12-31&daily=precipitation_sum&timezone=Asia%2FJakarta",
+      "body_sha256": "12b40d6fb8245f2965011e958f589f6fefae0f7d8914ee723f578d948b7ff7a1",
+      "p20_mm": 581,
+      "p20_ref": 581,
+      "median_mm": 716,
+      "median_ref": 716,
+      "hits_legacy": 6,
+      "hits_v1_rule": 6,
+      "hits_ref": 6,
+      "hit_years": [
+        {
+          "year": 2002,
+          "mm": 446,
+          "total_mm100": 44630
+        },
+        {
+          "year": 2004,
+          "mm": 574,
+          "total_mm100": 57400
+        },
+        {
+          "year": 2006,
+          "mm": 377,
+          "total_mm100": 37690
+        },
+        {
+          "year": 2009,
+          "mm": 463,
+          "total_mm100": 46340
+        },
+        {
+          "year": 2019,
+          "mm": 534,
+          "total_mm100": 53430
+        },
+        {
+          "year": 2023,
+          "mm": 497,
+          "total_mm100": 49690
+        }
+      ],
+      "hit_years_ref": [
+        {
+          "year": 2002,
+          "mm": 446
+        },
+        {
+          "year": 2004,
+          "mm": 574
+        },
+        {
+          "year": 2006,
+          "mm": 377
+        },
+        {
+          "year": 2009,
+          "mm": 463
+        },
+        {
+          "year": 2019,
+          "mm": 534
+        },
+        {
+          "year": 2023,
+          "mm": 497
+        }
+      ],
+      "v1_thr_full_mm10": 4624,
+      "v1_thr_half_mm10": 5806,
+      "v1_full_years": [
+        2002,
+        2006
+      ],
+      "v1_half_or_full_years": [
+        2002,
+        2004,
+        2006,
+        2009,
+        2019,
+        2023
+      ]
+    },
+    {
+      "site": "Kupang",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-10.17&longitude=123.61&start_date=1991-01-01&end_date=2025-12-31&daily=precipitation_sum&timezone=Asia%2FJakarta",
+      "body_sha256": "cac1b7509100542a413dbd3fad93dea0a53ce22e2b9fb54774edd54aa7f276c4",
+      "p20_mm": 196,
+      "p20_ref": 196,
+      "median_mm": 312,
+      "median_ref": 312,
+      "hits_legacy": 4,
+      "hits_v1_rule": 4,
+      "hits_ref": 4,
+      "hit_years": [
+        {
+          "year": 2004,
+          "mm": 189,
+          "total_mm100": 18900
+        },
+        {
+          "year": 2015,
+          "mm": 143,
+          "total_mm100": 14340
+        },
+        {
+          "year": 2019,
+          "mm": 171,
+          "total_mm100": 17140
+        },
+        {
+          "year": 2023,
+          "mm": 176,
+          "total_mm100": 17550
+        }
+      ],
+      "hit_years_ref": [
+        {
+          "year": 2004,
+          "mm": 189
+        },
+        {
+          "year": 2015,
+          "mm": 143
+        },
+        {
+          "year": 2019,
+          "mm": 171
+        },
+        {
+          "year": 2023,
+          "mm": 176
+        }
+      ],
+      "v1_thr_full_mm10": 1794,
+      "v1_thr_half_mm10": 1955,
+      "v1_full_years": [
+        2015,
+        2019,
+        2023
+      ],
+      "v1_half_or_full_years": [
+        2004,
+        2015,
+        2019,
+        2023
+      ]
+    }
+  ],
+  "mismatches": [],
+  "notes": [
+    "Grobogan 2002: exact total 461.50 mm rounds to 462; reference shows 461 because its float sum landed just below .50. Not a data difference."
+  ]
+}

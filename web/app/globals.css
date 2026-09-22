@@ -1,0 +1,196 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Design tokens. Light is the base; dark comes from prefers-color-scheme and
+   from an explicit data-theme on <html> when the reader picks one.
+   --------------------------------------------------------------------------- */
+
+:root {
+  color-scheme: light;
+
+  --bg: #f7f6f2;
+  --bg-raised: #ffffff;
+  --bg-sunken: #efede6;
+  --ink: #16191c;
+  --ink-muted: #5b6168;
+  --ink-faint: #868d95;
+  --line: #e0ddd4;
+  --line-strong: #c9c5b9;
+
+  --accent: #0d6b52;
+  --accent-ink: #ffffff;
+  --accent-soft: #e4efe9;
+
+  --signal-open: #4a6fa5;
+  --signal-live: #0d6b52;
+  --signal-warn: #8a5a12;
+  --signal-stop: #9a3535;
+  --signal-done: #45525e;
+
+  --focus: #0d6b52;
+
+  --radius: 10px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 1px 2px rgb(22 25 28 / 6%);
+  --shadow-md: 0 1px 2px rgb(22 25 28 / 5%), 0 8px 24px -12px rgb(22 25 28 / 18%);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    --bg: #0e1113;
+    --bg-raised: #161a1d;
+    --bg-sunken: #0a0c0e;
+    --ink: #eceef0;
+    --ink-muted: #a2a9b0;
+    --ink-faint: #767d85;
+    --line: #262b30;
+    --line-strong: #3a4148;
+
+    --accent: #3fbf96;
+    --accent-ink: #06231b;
+    --accent-soft: #11241e;
+
+    --signal-open: #7ea3d8;
+    --signal-live: #3fbf96;
+    --signal-warn: #d4a355;
+    --signal-stop: #e08585;
+    --signal-done: #8b969f;
+
+    --focus: #3fbf96;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 40%);
+    --shadow-md: 0 1px 2px rgb(0 0 0 / 40%), 0 10px 30px -14px rgb(0 0 0 / 70%);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #0e1113;
+  --bg-raised: #161a1d;
+  --bg-sunken: #0a0c0e;
+  --ink: #eceef0;
+  --ink-muted: #a2a9b0;
+  --ink-faint: #767d85;
+  --line: #262b30;
+  --line-strong: #3a4148;
+
+  --accent: #3fbf96;
+  --accent-ink: #06231b;
+  --accent-soft: #11241e;
+
+  --signal-open: #7ea3d8;
+  --signal-live: #3fbf96;
+  --signal-warn: #d4a355;
+  --signal-stop: #e08585;
+  --signal-done: #8b969f;
+
+  --focus: #3fbf96;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 40%);
+  --shadow-md: 0 1px 2px rgb(0 0 0 / 40%), 0 10px 30px -14px rgb(0 0 0 / 70%);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-raised: var(--bg-raised);
+  --color-sunken: var(--bg-sunken);
+  --color-ink: var(--ink);
+  --color-muted: var(--ink-muted);
+  --color-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-open: var(--signal-open);
+  --color-live: var(--signal-live);
+  --color-warn: var(--signal-warn);
+  --color-stop: var(--signal-stop);
+  --color-done: var(--signal-done);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  --radius-card: var(--radius);
+  --radius-panel: var(--radius-lg);
+}
+
+/* --------------------------------------------------------------------------- */
+
+* {
+  min-width: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.numeric {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+.hashtext {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: -0.01em;
+  word-break: break-all;
+}
+
+.rule-grid {
+  background-image: linear-gradient(to right, var(--line) 1px, transparent 1px);
+  background-size: 96px 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

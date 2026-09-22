@@ -1,0 +1,9 @@
+{
+  "source": "nasa-power",
+  "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=PRECTOTCORR&community=AG&longitude=110.65&latitude=-7.75&start=20251001&end=20251031&format=JSON&time-standard=LST",
+  "fetched_at": "2026-09-22T10:57:47.385Z",
+  "bytes": 987,
+  "body_sha256": "d9ddcac045ccd92301dfa5883c0592af2846c1ca1f372f7f6bea5e44a8f0daa8",
+  "normalized_sha256": "3d35824bd4311125d1423677e3e47498cb151488129296994620d46635569bd2",
+  "attribution": "Data obtained from the NASA Langley Research Center (LaRC) POWER Project funded through the NASA Earth Science/Applied Science Program."
+}

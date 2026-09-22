@@ -1,0 +1,15 @@
+target/
+node_modules/
+.next/
+.env*
+!.env.example
+*.keypair.json
+deployer.json
+program-keypair.json
+.vercel
+id.json
+**/id.json
+program/keys/
+program/**/*-keypair.json
+*.pem
+*.tsbuildinfo

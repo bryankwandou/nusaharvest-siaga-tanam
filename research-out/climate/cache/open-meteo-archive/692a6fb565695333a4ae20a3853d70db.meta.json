@@ -1,0 +1,9 @@
+{
+  "source": "open-meteo-archive",
+  "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-7.75&longitude=110.65&start_date=2025-10-01&end_date=2025-12-31&daily=precipitation_sum&timezone=Asia%2FJakarta",
+  "fetched_at": "2026-09-22T15:17:51.349Z",
+  "bytes": 1971,
+  "body_sha256": "6b3ea3d9ed891a48c70261c5ec600bbb98925c902b475fa6b865f6f61ddbbd89",
+  "normalized_sha256": "f94829576ad4d52eb9f2d8931a85b21284dca2af51a10fa8c8d756d0838c7e8e",
+  "attribution": "Weather data by Open-Meteo.com (https://open-meteo.com/), licensed CC BY 4.0. Underlying ERA5/ERA5-Land reanalysis: Copernicus Climate Change Service (C3S), Hersbach et al. (2020)."
+}

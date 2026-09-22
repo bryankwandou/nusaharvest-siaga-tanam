@@ -1,0 +1,35 @@
+{
+  "grid_cell": 2962106,
+  "center": {
+    "lat": -7.75,
+    "lon": 110.65
+  },
+  "start": "2025-10-01",
+  "end": "2025-10-31",
+  "fetched": [
+    {
+      "source": "open-meteo-archive",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-7.75&longitude=110.65&start_date=2025-10-01&end_date=2025-10-31&daily=precipitation_sum&timezone=Asia%2FJakarta",
+      "cached": false,
+      "fetched_at": "2026-09-22T10:57:46.179Z",
+      "body_sha256": "05b1425f66331677b07e293ff2d9604d8d8458a4bdb94bda08b63bc4069f6518",
+      "normalized_sha256": "5be6a35d3ecfb1c2e5f849cef0eef24a493c61174f551a2178d048430d1b88a7",
+      "days": 31,
+      "total_mm100": 24380
+    },
+    {
+      "source": "nasa-power",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=PRECTOTCORR&community=AG&longitude=110.65&latitude=-7.75&start=20251001&end=20251031&format=JSON&time-standard=LST",
+      "cached": false,
+      "fetched_at": "2026-09-22T10:57:47.385Z",
+      "body_sha256": "d9ddcac045ccd92301dfa5883c0592af2846c1ca1f372f7f6bea5e44a8f0daa8",
+      "normalized_sha256": "3d35824bd4311125d1423677e3e47498cb151488129296994620d46635569bd2",
+      "days": 31,
+      "total_mm100": 32498
+    }
+  ],
+  "attribution": {
+    "open-meteo-archive": "Weather data by Open-Meteo.com (https://open-meteo.com/), licensed CC BY 4.0. Underlying ERA5/ERA5-Land reanalysis: Copernicus Climate Change Service (C3S), Hersbach et al. (2020).",
+    "nasa-power": "Data obtained from the NASA Langley Research Center (LaRC) POWER Project funded through the NASA Earth Science/Applied Science Program."
+  }
+}

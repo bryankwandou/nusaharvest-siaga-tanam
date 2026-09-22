@@ -1,0 +1,465 @@
+{
+  "meta": {
+    "siteName": "NusaHarvest",
+    "productName": "Siaga Tanam",
+    "home": {
+      "title": "NusaHarvest Siaga Tanam",
+      "description": "A sponsor sets money aside before the planting season. If public rainfall data shows the season failed, registered farming households are paid automatically and anyone can check the record."
+    },
+    "campaigns": {
+      "title": "Campaigns",
+      "description": "Every campaign, its locked funds, its recipient count and its current state."
+    },
+    "proof": {
+      "title": "Campaign record",
+      "description": "Locked funds, recipient list, rainfall reading and receipts for one campaign."
+    },
+    "console": {
+      "title": "Sponsor console",
+      "description": "Set the area, the season window and the amount, then review the thresholds and the 25-year history before funding."
+    },
+    "check": {
+      "title": "Check a registration",
+      "description": "Enter a phone number and proof code to see whether it is in the locked recipient list."
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "campaigns": "Campaigns",
+    "console": "Sponsor console",
+    "check": "Check registration",
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "languageEnglish": "English",
+    "languageIndonesian": "Bahasa Indonesia",
+    "theme": "Appearance",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System"
+  },
+  "footer": {
+    "tagline": "Sponsor-funded conditional assistance for rainfed farming households in Indonesia.",
+    "notInsurance": "Sponsors pay for it. Households pay nothing to take part and file nothing to be paid.",
+    "sections": {
+      "product": "Product",
+      "verify": "Verify",
+      "about": "About"
+    },
+    "links": {
+      "campaigns": "Campaigns",
+      "check": "Check a registration",
+      "console": "Sponsor console",
+      "method": "How the threshold is set",
+      "sourceCode": "Source code",
+      "docs": "Documentation"
+    },
+    "rights": "Built in the open. Records on Solana are permanent and public."
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Rainfall relief, funded before the season",
+      "title": "The money is set aside before anyone knows how the season will go.",
+      "lede": "A sponsor locks funds ahead of planting. The list of recipient households is fixed before the rain is measured. Public rainfall data decides the outcome, and the payout is released without anyone filing a request.",
+      "primaryCta": "See campaigns",
+      "secondaryCta": "Check a registration",
+      "note": "Farming households register through WhatsApp. They never hold tokens, never sign a transaction and never pay a fee."
+    },
+    "fixed": {
+      "title": "Three things are fixed before the weather is known",
+      "items": {
+        "funds": {
+          "title": "The funds",
+          "body": "In escrow mode the sponsor deposits the full amount into a program-controlled account before registration opens. The balance is readable by anyone."
+        },
+        "roster": {
+          "title": "The recipient list",
+          "body": "Registrations close at a set time. The list is hashed into a single merkle root and written on chain. Nobody can be added or removed afterwards."
+        },
+        "threshold": {
+          "title": "The rainfall threshold",
+          "body": "The threshold comes from the 1991-2020 record for that grid cell: the 10th percentile for a full payment, the 20th for a half payment. It is stored on chain at creation."
+        }
+      }
+    },
+    "steps": {
+      "title": "How a season runs",
+      "lede": "Five steps, each one leaving a record you can read without asking us.",
+      "items": {
+        "create": {
+          "title": "The sponsor creates a campaign",
+          "body": "Area, season window, amount per household and maximum number of households. The thresholds are computed from the public climate record and shown with 25 years of history before the sponsor commits."
+        },
+        "enrol": {
+          "title": "Households register by WhatsApp",
+          "body": "A farmer sends a message, shares the field location and gives an e-wallet number. The number is checked against the account holder name and stored encrypted. Nothing personal goes on chain."
+        },
+        "lock": {
+          "title": "The list is locked",
+          "body": "Before the freeze time the system writes the recipient count and the merkle root of the list on chain. After that the list cannot change."
+        },
+        "measure": {
+          "title": "Rainfall is measured",
+          "body": "Daily rainfall for the campaign grid cells is read from two independent public archives. Seven days after the window closes the totals are compared. If they differ by more than 25 percent, a person reviews it before anything is settled."
+        },
+        "release": {
+          "title": "The payout is released",
+          "body": "The reading goes on chain with the hash of the exact data used. The sponsor's auditor has 48 hours to dispute it. After that anyone can trigger the release, and the receipts are hashed back on chain."
+        }
+      }
+    },
+    "verify": {
+      "title": "What you can check for yourself",
+      "lede": "Every statement on this site maps to a field in a 368-byte account on Solana. Read the account, recompute the hash, compare.",
+      "items": {
+        "amount": {
+          "title": "Locked amount",
+          "body": "The vault balance, read from the token account the program controls."
+        },
+        "roster": {
+          "title": "roster_root",
+          "body": "Recompute your own leaf from your phone number and salt, then verify it against the root on chain."
+        },
+        "data": {
+          "title": "data_hash",
+          "body": "Download the canonical rainfall document, hash it in your browser and compare it byte for byte."
+        },
+        "receipts": {
+          "title": "receipts_root",
+          "body": "After payment, each receipt is a leaf under a root written on chain."
+        }
+      }
+    },
+    "limits": {
+      "title": "What this does not do",
+      "lede": "Written down so nobody has to guess.",
+      "items": {
+        "area": "The trigger is area rainfall for a 0.1 degree grid cell, not the condition of one particular field. A household can lose a harvest for reasons the rainfall total does not show, and a payout can arrive for a household whose field was fine.",
+        "pledge": "In pledge mode the chain records the recipient list, the reading and the receipts, but not the money. Those campaigns carry a permanent label saying the funds are not locked on chain.",
+        "coverage": "The amount is help with the next planting, not replacement of lost income. It is set by the sponsor and shown before anyone registers.",
+        "payment": "Payment depends on the e-wallet number being correct and open. Failed transfers are shown on the campaign record and can be corrected within 14 days."
+      }
+    },
+    "cta": {
+      "title": "Look at a campaign record",
+      "body": "Every number on the page comes from the chain or from the public climate archive. Nothing is filled in for display.",
+      "action": "Open campaigns"
+    }
+  },
+  "campaigns": {
+    "title": "Campaigns",
+    "lede": "Each campaign covers one area, one commodity and one season window.",
+    "filters": {
+      "search": "Search",
+      "searchPlaceholder": "Code, sponsor or area",
+      "status": "State",
+      "all": "All",
+      "clear": "Clear filters"
+    },
+    "count": "{count, plural, =0 {No campaigns} one {# campaign} other {# campaigns}}",
+    "empty": {
+      "title": "No campaigns yet",
+      "body": "When a sponsor creates the first campaign it appears here with its funds, its recipient count and its state."
+    },
+    "emptyFiltered": {
+      "title": "Nothing matches",
+      "body": "No campaign matches that search in this state."
+    },
+    "card": {
+      "recipients": "Recipients",
+      "locked": "Locked",
+      "perHousehold": "Per household",
+      "windowEnds": "Window ends",
+      "open": "Open record"
+    },
+    "error": {
+      "title": "Campaign list unavailable",
+      "body": "The campaign service did not answer. Nothing is shown rather than something made up. Try again shortly."
+    }
+  },
+  "proof": {
+    "back": "All campaigns",
+    "sponsoredBy": "Funded by {sponsor}",
+    "notFound": {
+      "title": "No campaign with that code",
+      "body": "Check the code on your registration message, or open the campaign list.",
+      "action": "Campaign list"
+    },
+    "unavailable": {
+      "title": "Record unavailable",
+      "body": "The campaign service did not answer, so this page has nothing verified to show."
+    },
+    "labels": {
+      "pledge": "Funds not locked on chain",
+      "pledgeDetail": "This is a pledge campaign. The recipient list, the rainfall reading and the receipts are on chain. The money is not.",
+      "replay": "Historical replay",
+      "replayDetail": "This campaign reruns an archived season on devnet using real archived rainfall data. No household is paid from it.",
+      "review": "Marked for review",
+      "reviewDetail": "The two rainfall sources disagree by more than 25 percent. Settlement waits for a person to decide.",
+      "manual": "Manual disbursement",
+      "manualDetail": "Transfers were made by an operator and evidence was hashed afterwards. They were not sent by a payment gateway."
+    },
+    "summary": {
+      "title": "At a glance",
+      "locked": "Locked in the vault",
+      "lockedPledge": "Committed by sponsor",
+      "recipients": "Recipients in the locked list",
+      "recipientsPending": "List not locked yet",
+      "amountFull": "Full payment per household",
+      "amountHalf": "Half payment per household",
+      "freeze": "Registration closes",
+      "window": "Season window",
+      "cluster": "Network",
+      "mode": "Mode",
+      "modeEscrow": "Escrow",
+      "modePledge": "Pledge",
+      "commodity": "Commodity",
+      "area": "Area",
+      "gridCells": "{count, plural, one {# grid cell} other {# grid cells}} of 0.1 degrees"
+    },
+    "timeline": {
+      "title": "State",
+      "lede": "The program moves through these states in one direction only.",
+      "pending": "Not reached",
+      "current": "Current state",
+      "viewTx": "Transaction"
+    },
+    "rainfall": {
+      "title": "Rainfall against the thresholds",
+      "observed": "Measured over the window",
+      "observedPending": "Not measured yet",
+      "thrFull": "Full payment at or below",
+      "thrHalf": "Half payment at or below",
+      "median": "1991-2020 median",
+      "unit": "mm",
+      "source": "Source",
+      "updated": "Updated {date}",
+      "secondary": "Second source",
+      "divergence": "Difference between sources",
+      "empty": "Rainfall for this window has not been read yet. The reading is taken seven days after the window closes, so late corrections in the archive are included.",
+      "outcomeFull": "Below the full-payment threshold. Every household in the locked list receives the full amount.",
+      "outcomeHalf": "Below the half-payment threshold but above the full one. Every household in the locked list receives half.",
+      "outcomeNone": "Above both thresholds. This campaign does not pay out this season and the funds return to the sponsor.",
+      "chartLabel": "Cumulative rainfall through the season window",
+      "chartDay": "{date}: {value} mm"
+    },
+    "onchain": {
+      "title": "On-chain record",
+      "lede": "Rule version {version}. Field names match the account layout in the specification.",
+      "account": "Campaign account",
+      "programId": "Program",
+      "sponsor": "Sponsor",
+      "operator": "Operator",
+      "auditor": "Auditor",
+      "disburser": "Disburser",
+      "mint": "Mint",
+      "termsHash": "terms_hash",
+      "rosterRoot": "roster_root",
+      "dataHash": "data_hash",
+      "receiptsRoot": "receipts_root",
+      "notSet": "Not set yet",
+      "copy": "Copy",
+      "copied": "Copied",
+      "explorer": "View on Solana Explorer",
+      "empty": "The campaign account is not readable right now, so no on-chain field is shown."
+    },
+    "reproduce": {
+      "title": "Recompute data_hash yourself",
+      "body": "Download the canonical rainfall document, hash it with SHA-256 in your browser and compare it with the value on chain. The check runs on your device.",
+      "action": "Download and compare",
+      "running": "Hashing",
+      "match": "Match. The document you downloaded is exactly the one that was settled.",
+      "mismatch": "No match. The document does not correspond to the hash on chain.",
+      "computed": "Computed",
+      "onchain": "On chain",
+      "failed": "The document could not be fetched. Nothing is claimed either way.",
+      "unavailable": "The canonical document is published when the campaign is settled."
+    },
+    "receipts": {
+      "title": "Receipts",
+      "paid": "Households paid",
+      "failed": "Transfers that failed",
+      "total": "Total transferred",
+      "returned": "Returned to the sponsor",
+      "posted": "Receipts root posted {date}",
+      "empty": "Receipts appear after the funds are released and the transfers are made."
+    },
+    "check": {
+      "title": "Are you on the list?",
+      "body": "If you registered for this campaign, check your phone number and proof code against the root on chain.",
+      "action": "Check a registration"
+    }
+  },
+  "status": {
+    "OPEN": {
+      "name": "Open",
+      "body": "The campaign exists and registration is running. The list can still be locked again as more households register."
+    },
+    "SETTLED": {
+      "name": "Settled",
+      "body": "The rainfall reading and the hash of the data are on chain. The auditor has 48 hours to dispute it."
+    },
+    "DISPUTED": {
+      "name": "Disputed",
+      "body": "The sponsor's auditor challenged the reading. Release is blocked until the operator and the auditor sign a new settlement together."
+    },
+    "SETTLED_FINAL": {
+      "name": "Settled, final",
+      "body": "The operator and the auditor signed the reading together. It cannot be disputed again."
+    },
+    "RELEASED": {
+      "name": "Released",
+      "body": "The payout left the vault to the disburser and the remainder went back to the sponsor. The vault is closed."
+    },
+    "RECEIPTED": {
+      "name": "Receipted",
+      "body": "Every transfer is recorded and the merkle root of the receipts is on chain."
+    },
+    "REFUNDED": {
+      "name": "Refunded",
+      "body": "No settlement arrived within 30 days of the window closing, so the whole vault went back to the sponsor."
+    }
+  },
+  "outcome": {
+    "FULL": "Full payment",
+    "HALF": "Half payment",
+    "NONE": "No payment",
+    "pending": "Not decided yet"
+  },
+  "console": {
+    "title": "Sponsor console",
+    "lede": "Set the area, the window and the amount. The thresholds come from the public climate record, and you see 25 years of history before you commit anything.",
+    "sections": {
+      "sponsor": "Who is funding this",
+      "coverage": "Area and season",
+      "amounts": "Amounts",
+      "quote": "Thresholds and history",
+      "confirm": "Create the campaign"
+    },
+    "fields": {
+      "sponsorName": "Legal name of the sponsor",
+      "sponsorNameHint": "Shown on the public campaign record.",
+      "contactEmail": "Contact email",
+      "contactEmailHint": "Stored encrypted. Used only for settlement notices.",
+      "mode": "Funding mode",
+      "modeEscrow": "Escrow: deposit now",
+      "modeEscrowHint": "The full amount for the maximum number of households is deposited into the program vault when the campaign is created.",
+      "modePledge": "Pledge: commit now, pay on settlement",
+      "modePledgeHint": "The record carries a permanent label saying the funds are not locked on chain.",
+      "wallet": "Sponsor wallet address",
+      "walletHint": "The account that signs the create transaction and receives the remainder. Leave empty for pledge mode.",
+      "province": "Province",
+      "regency": "Regency",
+      "commodity": "Commodity and stage",
+      "commodityOptions": {
+        "riceRainfed": "Rainfed rice, early planting",
+        "maizeDryland": "Maize, dryland"
+      },
+      "windowStart": "Window starts",
+      "windowEnd": "Window ends",
+      "windowHint": "The rainfall total is taken over this range, every year, for the baseline as well.",
+      "amountFull": "Full payment per household",
+      "amountHalf": "Half payment per household",
+      "unitsMax": "Maximum households",
+      "amountHint": "Amounts in rupiah. The half payment cannot be larger than the full payment."
+    },
+    "actions": {
+      "getQuote": "Compute thresholds",
+      "recompute": "Recompute",
+      "create": "Create campaign",
+      "creating": "Preparing transaction",
+      "reset": "Start over"
+    },
+    "quote": {
+      "title": "Thresholds for this area and window",
+      "thrFull": "Full payment at or below",
+      "thrHalf": "Half payment at or below",
+      "median": "Median since 1991",
+      "baseline": "Baseline seasons used",
+      "latestDay": "Archive complete through",
+      "backtestTitle": "The last 25 seasons under these rules",
+      "backtestLede": "How often this campaign would have paid, and what it would have cost, using the same archive and the same arithmetic.",
+      "full": "Full payment",
+      "half": "Half payment",
+      "none": "No payment",
+      "missing": "Data missing",
+      "costPerUnit": "Total per household over 25 seasons",
+      "costMax": "Total at the maximum number of households",
+      "sources": "Sources",
+      "empty": "Fill in the area and the window, then compute the thresholds.",
+      "pending": "Reading the climate archive"
+    },
+    "result": {
+      "title": "Campaign draft saved",
+      "code": "Campaign code",
+      "termsHash": "terms_hash",
+      "signNow": "Sign the create transaction with the sponsor wallet to fund the vault.",
+      "nextStep": "Next step",
+      "openRecord": "Open the campaign record"
+    },
+    "errors": {
+      "required": "Required.",
+      "email": "Enter a valid email address.",
+      "amountOrder": "The half payment cannot be larger than the full payment.",
+      "amountPositive": "Enter an amount above zero.",
+      "unitsPositive": "Enter at least one household.",
+      "windowOrder": "The window must end after it starts.",
+      "walletRequired": "Escrow mode needs a sponsor wallet address.",
+      "quoteFailed": "The thresholds could not be computed. The climate archive did not answer, so nothing is shown.",
+      "createFailed": "The campaign draft was not saved. Nothing was sent to the chain."
+    }
+  },
+  "check": {
+    "title": "Check a registration",
+    "lede": "Your phone number and proof code stay in this browser long enough to compute one hash. The list root is read from the chain, so an answer that says yes cannot be faked by this site.",
+    "fields": {
+      "code": "Campaign code",
+      "codePlaceholder": "NH-XXXXX",
+      "phone": "Phone number",
+      "phonePlaceholder": "+62 8xx xxxx xxxx",
+      "phoneHint": "The number used to register, with the country code.",
+      "proofCode": "Proof code",
+      "proofCodePlaceholder": "XXXX-XXXX",
+      "proofCodeHint": "The code in the message you received after registering."
+    },
+    "actions": {
+      "submit": "Check",
+      "checking": "Checking",
+      "again": "Check another"
+    },
+    "result": {
+      "matchTitle": "On the locked list",
+      "matchBody": "Your entry was in the list when it was locked on {date}, and the proof matches the root on chain.",
+      "noMatchTitle": "Not found in the locked list",
+      "noMatchBody": "No entry with this number and proof code is in the locked list for this campaign. Check the spelling, or contact the sponsor's field contact.",
+      "invalidTitle": "The proof did not verify",
+      "invalidBody": "The service returned a proof that does not lead to the root on chain. Do not treat this as a registration.",
+      "leaf": "Your leaf",
+      "root": "roster_root on chain",
+      "receiptTitle": "Payment receipt",
+      "receiptBody": "{amount} recorded as paid on {date}, verified against the receipts root on chain.",
+      "receiptPending": "No payment has been recorded for this campaign yet."
+    },
+    "errors": {
+      "required": "Required.",
+      "phoneFormat": "Enter the number with a country code, for example +6281234567890.",
+      "notFound": "That campaign code does not exist.",
+      "rateLimited": "Too many checks from this connection. Wait a minute and try again.",
+      "failed": "The check could not be completed. Nothing is claimed either way."
+    }
+  },
+  "common": {
+    "loading": "Loading",
+    "retry": "Try again",
+    "notAvailable": "Not available",
+    "yes": "Yes",
+    "no": "No",
+    "copy": "Copy",
+    "copied": "Copied",
+    "of": "of",
+    "mm": "mm",
+    "households": "households",
+    "dateUnknown": "Date not recorded"
+  }
+}

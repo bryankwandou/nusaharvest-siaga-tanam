@@ -1,0 +1,257 @@
+{
+  "grid_cell": 2962106,
+  "center": {
+    "lat": -7.75,
+    "lon": 110.65
+  },
+  "window": "10-01:12-31",
+  "source": {
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-7.75&longitude=110.65&start_date=1991-01-01&end_date=2026-09-15&daily=precipitation_sum&timezone=Asia%2FJakarta",
+    "body_sha256": "9f6720acbdf7340ffcd6fe8bba3fe5e9504dfc39c77b41b314115d4db2696fd1",
+    "normalized_sha256": "78a297f370ea3fc1c85b6b2fe3e17a2fac7b7a33a8c85896ee2eea7467a2282a",
+    "attribution": "Weather data by Open-Meteo.com (https://open-meteo.com/), licensed CC BY 4.0. Underlying ERA5/ERA5-Land reanalysis: Copernicus Climate Change Service (C3S), Hersbach et al. (2020)."
+  },
+  "latest_day": "2026-09-15",
+  "thresholds": {
+    "baseline_years": [
+      1991,
+      1992,
+      1993,
+      1994,
+      1995,
+      1996,
+      1997,
+      1998,
+      1999,
+      2000,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020
+    ],
+    "baseline_missing_years": [],
+    "p10_mm100": 52090,
+    "p20_mm100": 55548,
+    "median_mm100": 74015,
+    "thr_full_mm10": 5209,
+    "thr_half_mm10": 5554
+  },
+  "p10_mm": 521,
+  "p20_mm": 555,
+  "median_mm": 740,
+  "backtest": {
+    "years": [
+      {
+        "season_year": 2001,
+        "total_mm10": 7835,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2002,
+        "total_mm10": 6031,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2003,
+        "total_mm10": 6423,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2004,
+        "total_mm10": 7668,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2005,
+        "total_mm10": 6851,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2006,
+        "total_mm10": 5590,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2007,
+        "total_mm10": 7573,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2008,
+        "total_mm10": 7054,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2009,
+        "total_mm10": 4768,
+        "outcome": "FULL",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2010,
+        "total_mm10": 11723,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2011,
+        "total_mm10": 8028,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2012,
+        "total_mm10": 8159,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2013,
+        "total_mm10": 7320,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2014,
+        "total_mm10": 6453,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2015,
+        "total_mm10": 5258,
+        "outcome": "HALF",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2016,
+        "total_mm10": 10071,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2017,
+        "total_mm10": 6976,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2018,
+        "total_mm10": 5264,
+        "outcome": "HALF",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2019,
+        "total_mm10": 4232,
+        "outcome": "FULL",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2020,
+        "total_mm10": 9710,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2021,
+        "total_mm10": 7991,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2022,
+        "total_mm10": 10428,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2023,
+        "total_mm10": 3351,
+        "outcome": "FULL",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2024,
+        "total_mm10": 7738,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      },
+      {
+        "season_year": 2025,
+        "total_mm10": 7631,
+        "outcome": "NONE",
+        "cost_per_unit_idr": 0
+      }
+    ],
+    "full_count": 3,
+    "half_count": 2,
+    "none_count": 20,
+    "missing_count": 0,
+    "total_cost_per_unit_idr": 0,
+    "total_cost_units_max_idr": 0
+  },
+  "v1_hits": [
+    2009,
+    2015,
+    2018,
+    2019,
+    2023
+  ],
+  "p10_hits": [
+    2009,
+    2019,
+    2023
+  ],
+  "legacy_hits": [
+    {
+      "year": 2009,
+      "mm": 477,
+      "total_mm100": 47680
+    },
+    {
+      "year": 2015,
+      "mm": 526,
+      "total_mm100": 52580
+    },
+    {
+      "year": 2018,
+      "mm": 526,
+      "total_mm100": 52640
+    },
+    {
+      "year": 2019,
+      "mm": 423,
+      "total_mm100": 42320
+    },
+    {
+      "year": 2023,
+      "mm": 335,
+      "total_mm100": 33510
+    }
+  ]
+}

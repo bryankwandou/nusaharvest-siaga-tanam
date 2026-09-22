@@ -1,0 +1,34 @@
+{
+  "status": "REVIEW",
+  "data_hash": "6b378e0acc9ad9016b9d65a6e77eda34dd1e1369ca7b0ced7521d8b25608522b",
+  "outcome": "NONE",
+  "observed_mm10": 2438,
+  "secondary_mm10": 3249,
+  "divergence_bp": 3329,
+  "review_reasons": [
+    "sources differ by more than 25 percent (3329 bp)"
+  ],
+  "script_commit": "unknown",
+  "settled_at": "2026-09-22T11:03:12.420Z",
+  "fetches": [
+    {
+      "source": "open-meteo-archive",
+      "grid_cell": 2962106,
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-7.75&longitude=110.65&start_date=2025-10-01&end_date=2025-10-31&daily=precipitation_sum&timezone=Asia%2FJakarta",
+      "body_sha256": "05b1425f66331677b07e293ff2d9604d8d8458a4bdb94bda08b63bc4069f6518",
+      "normalized_sha256": "5be6a35d3ecfb1c2e5f849cef0eef24a493c61174f551a2178d048430d1b88a7"
+    },
+    {
+      "source": "nasa-power",
+      "grid_cell": 2962106,
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=PRECTOTCORR&community=AG&longitude=110.65&latitude=-7.75&start=20251001&end=20251031&format=JSON&time-standard=LST",
+      "body_sha256": "d9ddcac045ccd92301dfa5883c0592af2846c1ca1f372f7f6bea5e44a8f0daa8",
+      "normalized_sha256": "3d35824bd4311125d1423677e3e47498cb151488129296994620d46635569bd2"
+    }
+  ],
+  "attribution": {
+    "open-meteo-archive": "Weather data by Open-Meteo.com (https://open-meteo.com/), licensed CC BY 4.0. Underlying ERA5/ERA5-Land reanalysis: Copernicus Climate Change Service (C3S), Hersbach et al. (2020).",
+    "nasa-power": "Data obtained from the NASA Langley Research Center (LaRC) POWER Project funded through the NASA Earth Science/Applied Science Program."
+  },
+  "document": "E:\\000VSCODE PROJECT MULAI DARI DESEMBER 2025\\NusaHarvest V2 revamp\\nusaharvest\\research-out\\settlements\\KLT-2025-10.review.json"
+}
