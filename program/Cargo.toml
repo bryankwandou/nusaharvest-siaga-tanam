@@ -32,7 +32,7 @@ solana-transaction = "4"
 solana-transaction-error = "3"
 
 [profile.release]
-opt-level = "z"
+opt-level = 2 # measured smaller than "z" (20.9 KB vs 22.3 KB) and cheaper in CUs
 lto = "fat"
 codegen-units = 1
 panic = "abort"
