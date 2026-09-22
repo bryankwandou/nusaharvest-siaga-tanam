@@ -39,6 +39,11 @@ panic = "abort"
 strip = true
 overflow-checks = true
 
+# Our own arithmetic stays checked; dependency internals (pinocchio borrow counters, entrypoint
+# parsing) are written for unchecked builds and pulling their panic paths in costs ~5 KB of fmt code.
+[profile.release.package."*"]
+overflow-checks = false
+
 [lints.rust]
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }
 

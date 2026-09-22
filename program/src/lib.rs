@@ -190,12 +190,16 @@ fn check_campaign(campaign: &AccountView, program_id: &Address) -> Result<(), Pr
         (
             rd_key(d, O_SPONSOR),
             rd_u64(d, O_CAMPAIGN_ID).to_le_bytes(),
-            [d[O_BUMP]],
+            d[O_BUMP],
         )
     };
-    let expect =
-        Address::create_program_address(&[b"camp", sponsor.as_ref(), &id_le, &bump], program_id)
-            .map_err(|_| ProgramError::InvalidSeeds)?;
+    // The account is owned by this program and tagged, so it was created by CreateCampaign via
+    // invoke_signed; re-hashing the stored seeds is enough to prove it is the canonical PDA.
+    let expect = Address::derive_address(
+        &[b"camp".as_slice(), sponsor.as_array(), &id_le],
+        Some(bump),
+        program_id,
+    );
     if expect != *campaign.address() {
         return Err(err(E_BAD_PDA));
     }
@@ -211,7 +215,7 @@ fn token_fields(ai: &AccountView) -> Result<(Address, Address, u64), ProgramErro
         return Err(err(E_INVALID_DATA));
     }
     let g = ai.try_borrow()?;
-    let d = fixed::<72>(&g[..72])?;
+    let d = fixed::<72>(g.get(..72).ok_or(err(E_INVALID_DATA))?)?;
     Ok((
         rd_key(d, T_MINT),
         rd_key(d, T_OWNER),
@@ -285,12 +289,14 @@ fn create_campaign(program_id: &Address, accounts: &mut [AccountView], d: &[u8])
 
     let id_le = campaign_id.to_le_bytes();
     let (camp_key, camp_bump) =
-        Address::find_program_address(&[b"camp", sponsor.address().as_ref(), &id_le], program_id);
+        Address::try_find_program_address(&[b"camp", sponsor.address().as_ref(), &id_le], program_id)
+            .ok_or(err(E_BAD_PDA))?;
     if camp_key != *campaign.address() {
         return Err(err(E_BAD_PDA));
     }
     let (vault_key, vault_bump) =
-        Address::find_program_address(&[b"vault", campaign.address().as_ref()], program_id);
+        Address::try_find_program_address(&[b"vault", campaign.address().as_ref()], program_id)
+            .ok_or(err(E_BAD_PDA))?;
     if vault_key != *vault.address() {
         return Err(err(E_BAD_PDA));
     }
@@ -331,11 +337,11 @@ fn create_campaign(program_id: &Address, accounts: &mut [AccountView], d: &[u8])
         c[O_VAULT_BUMP] = vault_bump;
         c[O_RULE_VERSION] = RULE_VERSION;
         c[O_CAMPAIGN_ID..O_CAMPAIGN_ID + 8].copy_from_slice(&id_le);
-        c[O_SPONSOR..O_SPONSOR + 32].copy_from_slice(sponsor.address().as_ref());
-        c[O_OPERATOR..O_OPERATOR + 32].copy_from_slice(operator.as_ref());
-        c[O_AUDITOR..O_AUDITOR + 32].copy_from_slice(auditor.as_ref());
-        c[O_DISBURSER..O_DISBURSER + 32].copy_from_slice(disburser.as_ref());
-        c[O_MINT..O_MINT + 32].copy_from_slice(mint.address().as_ref());
+        c[O_SPONSOR..O_SPONSOR + 32].copy_from_slice(sponsor.address().as_array());
+        c[O_OPERATOR..O_OPERATOR + 32].copy_from_slice(operator.as_array());
+        c[O_AUDITOR..O_AUDITOR + 32].copy_from_slice(auditor.as_array());
+        c[O_DISBURSER..O_DISBURSER + 32].copy_from_slice(disburser.as_array());
+        c[O_MINT..O_MINT + 32].copy_from_slice(mint.address().as_array());
         c[O_FREEZE_TS..O_FREEZE_TS + 8].copy_from_slice(&freeze_ts.to_le_bytes());
         c[O_WINDOW_END_TS..O_WINDOW_END_TS + 8].copy_from_slice(&window_end_ts.to_le_bytes());
         c[O_AMOUNT_FULL..O_AMOUNT_FULL + 8].copy_from_slice(&amount_full.to_le_bytes());

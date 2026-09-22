@@ -5,7 +5,7 @@
 
 import { randomBytes } from 'node:crypto';
 import type { CampaignListResponse, CreateCampaignResponse } from '@/types/api';
-import { fail, json, parseJson, requireSponsor } from '@/lib/auth';
+import { dbNotConfigured, fail, json, parseJson, requireSponsor } from '@/lib/auth';
 import { query, one } from '@/lib/db';
 import { env } from '@/lib/env';
 import { encryptText } from '@/lib/crypto';
@@ -21,6 +21,8 @@ export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
 
 export async function GET(): Promise<Response> {
+  const nc = dbNotConfigured();
+  if (nc) return nc;
   try {
     return json({ campaigns: await listSummaries() } satisfies CampaignListResponse);
   } catch (e) {

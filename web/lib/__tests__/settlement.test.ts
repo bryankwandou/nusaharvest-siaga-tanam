@@ -172,3 +172,19 @@ describe('reproducible document hash', () => {
     expect(checkPublishedDocument(JSON.stringify(JSON.parse(r.json), null, 1), sha(JSON.stringify(JSON.parse(r.json), null, 1))).canonical_ok).toBe(false);
   });
 });
+
+describe('climate.fetchSeries response hash', () => {
+  it('hashes the normalized body, same as settlement.ts, so timing fields do not change it', async () => {
+    const { fetchSeries: fs } = await import('../climate');
+    const { normalizedBodySha256: nbs } = await import('../settlement');
+    const payload = { latitude: -7.7, longitude: 110.6, daily_units: { precipitation_sum: 'mm' }, daily: { time: ['2025-10-01', '2025-10-02'], precipitation_sum: [1.2, 0] } };
+    const a = JSON.stringify({ generationtime_ms: 0.123, ...payload });
+    const b = JSON.stringify({ daily: payload.daily, generationtime_ms: 9.87, daily_units: payload.daily_units, longitude: 110.6, latitude: -7.7 });
+    const mk = (body: string): FetchLike => (async () => ({ ok: true, status: 200, text: async () => body })) as unknown as FetchLike;
+    const sa = await fs('open-meteo-archive', 2962106, '2025-10-01', '2025-10-02', mk(a));
+    const sb = await fs('open-meteo-archive', 2962106, '2025-10-01', '2025-10-02', mk(b));
+    expect(sa.raw_sha256).toBe(nbs('open-meteo-archive', a));
+    expect(sa.raw_sha256).toBe(sb.raw_sha256);
+    expect(sa.raw_sha256).not.toBe(sha(a));
+  });
+});

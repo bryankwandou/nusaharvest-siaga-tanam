@@ -8,6 +8,7 @@ import {
   buildSettlement,
   canonicalJson,
   nasaPowerUrl,
+  normalizedBodySha256,
   openMeteoUrl,
   parseDay,
   parseNasaPower,
@@ -42,33 +43,8 @@ const WIB_OFFSET_S = 7 * 3600;
 // and their plain sha256 are still kept in the local cache for audit.
 // ---------------------------------------------------------------------------
 
-export const VOLATILE_TOP_LEVEL_KEYS: Record<SourceId, readonly string[]> = {
-  'open-meteo-archive': ['generationtime_ms'],
-  'nasa-power': ['times'],
-};
-
-/** Deterministic JSON with sorted keys. Numbers use JavaScript's shortest round-trip form. */
-export function stableStringify(v: unknown): string {
-  if (v === null || typeof v !== 'object') {
-    if (typeof v === 'number' && !Number.isFinite(v)) throw new Error('non-finite number in response');
-    return JSON.stringify(v);
-  }
-  if (Array.isArray(v)) return `[${v.map(stableStringify).join(',')}]`;
-  const o = v as Record<string, unknown>;
-  return `{${Object.keys(o)
-    .sort()
-    .map((k) => `${JSON.stringify(k)}:${stableStringify(o[k])}`)
-    .join(',')}}`;
-}
-
-export function normalizeBody(source: SourceId, body: string): string {
-  const j = JSON.parse(body) as Record<string, unknown>;
-  if (j === null || typeof j !== 'object' || Array.isArray(j)) throw new Error(`${source}: response is not a JSON object`);
-  for (const k of VOLATILE_TOP_LEVEL_KEYS[source]) delete j[k];
-  return stableStringify(j);
-}
-
-export const normalizedBodySha256 = (source: SourceId, body: string): string => sha256Hex(normalizeBody(source, body));
+// Implemented in climate.ts (fetchSeries hashes the same way); re-exported here for existing callers.
+export { VOLATILE_TOP_LEVEL_KEYS, stableStringify, normalizeBody, normalizedBodySha256 } from './climate';
 
 // ---------------------------------------------------------------------------
 // Errors

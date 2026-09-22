@@ -1,12 +1,14 @@
 // GET /api/campaigns/:code -- public proof page data (CampaignDetail).
 
-import { fail, json, limitPublic } from '@/lib/auth';
+import { dbNotConfigured, fail, json, limitPublic } from '@/lib/auth';
 import { buildDetail, findCampaignByCode } from '../../_lib/campaign-view';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: Request, ctx: { params: Promise<{ code: string }> }): Promise<Response> {
+  const nc = dbNotConfigured();
+  if (nc) return nc;
   const limited = await limitPublic(req, 'campaign', 120, 60);
   if (limited) return limited;
   const { code } = await ctx.params;

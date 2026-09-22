@@ -31,7 +31,7 @@ export interface SourceSeries {
   grid_cell: number;
   url: string;
   daily: DailyValue[];
-  raw_sha256: string; // sha256 of the raw HTTP response body
+  raw_sha256: string; // sha256 of the normalized response body (timing fields removed, keys sorted)
 }
 
 // ---------------------------------------------------------------------------
@@ -168,11 +168,41 @@ async function getText(fetchImpl: FetchLike, url: string): Promise<string> {
   throw lastErr instanceof Error ? lastErr : new Error(String(lastErr));
 }
 
+// Response hashing: timing fields (Open-Meteo generationtime_ms, NASA POWER times) are stripped and keys
+// sorted before hashing, so the hash is reproducible by a third party. settlement.ts re-exports these.
+export const VOLATILE_TOP_LEVEL_KEYS: Record<SourceId, readonly string[]> = {
+  'open-meteo-archive': ['generationtime_ms'],
+  'nasa-power': ['times'],
+};
+
+/** Deterministic JSON with sorted keys. Numbers use JavaScript's shortest round-trip form. */
+export function stableStringify(v: unknown): string {
+  if (v === null || typeof v !== 'object') {
+    if (typeof v === 'number' && !Number.isFinite(v)) throw new Error('non-finite number in response');
+    return JSON.stringify(v);
+  }
+  if (Array.isArray(v)) return `[${v.map(stableStringify).join(',')}]`;
+  const o = v as Record<string, unknown>;
+  return `{${Object.keys(o)
+    .sort()
+    .map((k) => `${JSON.stringify(k)}:${stableStringify(o[k])}`)
+    .join(',')}}`;
+}
+
+export function normalizeBody(source: SourceId, body: string): string {
+  const j = JSON.parse(body) as Record<string, unknown>;
+  if (j === null || typeof j !== 'object' || Array.isArray(j)) throw new Error(`${source}: response is not a JSON object`);
+  for (const k of VOLATILE_TOP_LEVEL_KEYS[source]) delete j[k];
+  return stableStringify(j);
+}
+
+export const normalizedBodySha256 = (source: SourceId, body: string): string => sha256Hex(normalizeBody(source, body));
+
 export async function fetchSeries(source: SourceId, cell: number, start: string, end: string, fetchImpl: FetchLike): Promise<SourceSeries> {
   const url = source === 'open-meteo-archive' ? openMeteoUrl(cell, start, end) : nasaPowerUrl(cell, start, end);
   const body = await getText(fetchImpl, url);
   const daily = source === 'open-meteo-archive' ? parseOpenMeteo(body, start, end) : parseNasaPower(body, start, end);
-  return { source, grid_cell: cell, url, daily, raw_sha256: sha256Hex(body) };
+  return { source, grid_cell: cell, url, daily, raw_sha256: normalizedBodySha256(source, body) };
 }
 
 // ---------------------------------------------------------------------------

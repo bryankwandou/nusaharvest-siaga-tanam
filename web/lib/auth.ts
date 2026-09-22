@@ -132,3 +132,7 @@ export async function limitPublic(req: Request, route: string, limit = 30, windo
     'retry-after': String(r.resetSecs),
   });
 }
+
+/** 503 when this deployment has no database, so callers get an honest "not connected" instead of a generic 500. */
+export const dbNotConfigured = (): Response | null =>
+  process.env.DATABASE_URL ? null : fail(503, 'not_configured', 'the campaign database is not connected on this deployment');
