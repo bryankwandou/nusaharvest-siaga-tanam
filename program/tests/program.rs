@@ -186,7 +186,14 @@ impl Env {
             signers,
             self.svm.latest_blockhash(),
         );
-        self.svm.send_transaction(tx).map(|_| ()).map_err(|e| e.err)
+        let tag = tx.message.instructions[0].data.first().copied();
+        let res = self.svm.send_transaction(tx);
+        if std::env::var_os("NH_PRINT_CU").is_some() {
+            if let Ok(meta) = &res {
+                eprintln!("CU tag={:?} units={}", tag, meta.compute_units_consumed);
+            }
+        }
+        res.map(|_| ()).map_err(|e| e.err)
     }
 
     fn data(&self, a: &Address) -> Vec<u8> {
